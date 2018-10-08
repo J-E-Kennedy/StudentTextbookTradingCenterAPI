@@ -2,6 +2,8 @@
 
 namespace SttcBookTrade.Migrations
 {
+
+#pragma warning disable CS1591
     public partial class BookTradeDBPriceTypeChange : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -40,4 +42,5 @@ namespace SttcBookTrade.Migrations
                 oldNullable: true);
         }
     }
+#pragma warning restore CS1591
 }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SttcBookTrade.Migrations
 {
+#pragma warning disable CS1591
     public partial class BookTradeDBInitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -98,4 +99,5 @@ namespace SttcBookTrade.Migrations
                 name: "Schools");
         }
     }
+#pragma warning restore CS1591
 }

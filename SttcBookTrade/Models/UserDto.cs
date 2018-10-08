@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace SttcBookTrade.Models
 {
+#pragma warning disable CS1591
     public class UserDto
     {
         public int UserID { get; set; }
@@ -25,4 +26,5 @@ namespace SttcBookTrade.Models
         public ICollection<BookDto> Books { get; set; }
         = new List<BookDto>();
     }
+#pragma warning restore CS1591
 }

@@ -2,6 +2,7 @@
 
 namespace SttcBookTrade.Migrations
 {
+#pragma warning disable CS1591
     public partial class BookTradeDBPropertyLengthRestrictionsRemoved : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,4 +57,5 @@ namespace SttcBookTrade.Migrations
                 oldClrType: typeof(string));
         }
     }
+#pragma warning restore CS1591
 }

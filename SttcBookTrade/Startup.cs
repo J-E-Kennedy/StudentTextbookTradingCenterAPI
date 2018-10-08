@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,9 +14,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SttcBookTrade.Entities;
 using SttcBookTrade.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SttcBookTrade
 {
+#pragma warning disable CS1591
     public class Startup
     {
 
@@ -29,12 +33,23 @@ namespace SttcBookTrade
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
             services.AddMvc()
                 .AddMvcOptions(o => o.OutputFormatters.Add(
                     new XmlDataContractSerializerOutputFormatter()));
 
-            var connectionString = Configuration["connectionStrings:cityInfoDBConnectionString"];
+
+            var connectionString = Configuration["connectionStrings:bookTradeDBConnectionString_Azure"];
             services.AddDbContext<BookTradeContext>(o => o.UseSqlServer(connectionString));
+            
 
             services.AddScoped<IBookTradeRepository, BookTradeRepository>();
 
@@ -43,7 +58,14 @@ namespace SttcBookTrade
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, BookTradeContext bookTradeContext)
         {
-           
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Student Textbook Tradting Center API V0.1");
+                c.RoutePrefix = string.Empty;
+            });
 
             if (env.IsDevelopment())
             {
@@ -51,7 +73,7 @@ namespace SttcBookTrade
             }
             else
             {
-                app.UseExceptionHandler();
+                app.UseExceptionHandler("/Home/Error");
             }
 
             bookTradeContext.EnsureSeedDataForContext();
@@ -71,4 +93,5 @@ namespace SttcBookTrade
 
         }
     }
+#pragma warning restore CS1591
 }

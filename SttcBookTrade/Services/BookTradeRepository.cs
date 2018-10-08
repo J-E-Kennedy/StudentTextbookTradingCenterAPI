@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SttcBookTrade.Services
 {
+#pragma warning disable CS1591
     public class BookTradeRepository : IBookTradeRepository
     {
         private BookTradeContext _context;
@@ -152,4 +153,5 @@ namespace SttcBookTrade.Services
             return _context.Books.ToList();
         }
     }
+#pragma warning restore CS1591
 }

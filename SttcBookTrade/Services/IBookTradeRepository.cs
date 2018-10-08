@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SttcBookTrade.Services
 {
+#pragma warning disable CS1591
     public interface IBookTradeRepository
     {
         bool UserExists(int userId);
@@ -25,7 +26,9 @@ namespace SttcBookTrade.Services
         IEnumerable<Book> GetBooks();
 
         IEnumerable<Book> SearchBooks(string query, string order, string direction);
+        
 
         bool Save();
     }
+#pragma warning restore CS1591
 }

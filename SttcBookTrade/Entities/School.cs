@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace SttcBookTrade.Entities
 {
+
+#pragma warning disable CS1591
     public class School
     {
         [Key]
@@ -23,4 +25,6 @@ namespace SttcBookTrade.Entities
         public ICollection<User> Users { get; set; }
         = new List<User>();
     }
+
+#pragma warning restore CS1591
 }

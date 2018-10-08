@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace SttcBookTrade.Models
 {
+#pragma warning disable CS1591
     public class UserWithoutBooksDto
     {
         public int UserID { get; set; }
@@ -16,4 +17,5 @@ namespace SttcBookTrade.Models
         public string Profile { get; set; }
         //public int StudentIdentification { get; set; }
     }
+#pragma warning restore CS1591
 }

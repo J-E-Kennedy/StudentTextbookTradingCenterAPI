@@ -5,8 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace SttcBookTrade.Entities
 {
+
+#pragma warning disable CS1591
     public class Book
     {
         [Key]
@@ -40,4 +43,5 @@ namespace SttcBookTrade.Entities
         public string Notes { get; set; }
 
 }
+#pragma warning restore CS1591
 }

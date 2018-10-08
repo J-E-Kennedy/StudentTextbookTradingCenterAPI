@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SttcBookTrade
 {
+#pragma warning disable CS1591
     public static class BookTradeExtensions
     {
         public static void EnsureSeedDataForContext(this BookTradeContext context)
@@ -251,4 +252,5 @@ namespace SttcBookTrade
             context.SaveChanges();
         }
     }
+#pragma warning restore CS1591
 }

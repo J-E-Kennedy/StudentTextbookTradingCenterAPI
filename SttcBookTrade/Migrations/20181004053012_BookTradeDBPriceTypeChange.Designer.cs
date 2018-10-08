@@ -8,6 +8,7 @@ using SttcBookTrade.Entities;
 
 namespace SttcBookTrade.Migrations
 {
+#pragma warning disable CS1591
     [DbContext(typeof(BookTradeContext))]
     [Migration("20181004053012_BookTradeDBPriceTypeChange")]
     partial class BookTradeDBPriceTypeChange
@@ -135,4 +136,5 @@ namespace SttcBookTrade.Migrations
 #pragma warning restore 612, 618
         }
     }
+#pragma warning restore CS1591
 }

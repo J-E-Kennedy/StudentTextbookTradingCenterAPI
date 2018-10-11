@@ -35,7 +35,7 @@ namespace SttcBookTrade
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v0.1", new Info { Title = "Student Textbook Trading Center API", Version = "v0.1" });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -46,6 +46,7 @@ namespace SttcBookTrade
                 .AddMvcOptions(o => o.OutputFormatters.Add(
                     new XmlDataContractSerializerOutputFormatter()));
 
+            services.AddCors();
 
             var connectionString = Configuration["connectionStrings:bookTradeDBConnectionString_Azure"];
             services.AddDbContext<BookTradeContext>(o => o.UseSqlServer(connectionString));
@@ -63,9 +64,11 @@ namespace SttcBookTrade
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Student Textbook Tradting Center API V0.1");
+                c.SwaggerEndpoint("/swagger/v0.1/swagger.json", "Student Textbook Tradting Center API V0.1");
                 c.RoutePrefix = string.Empty;
             });
+
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod());
 
             if (env.IsDevelopment())
             {

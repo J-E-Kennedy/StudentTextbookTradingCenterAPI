@@ -25,6 +25,7 @@ namespace SttcBookTrade.Models
         public string Condition { get; set; }
 
         public string Notes { get; set; }
+        public bool IsWishlisted { get; set; }
 
         public UserWithoutBooksDto User { get; set; }
     }

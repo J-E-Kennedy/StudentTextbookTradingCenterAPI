@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SttcBookTrade.Entities;
 
 namespace SttcBookTrade.Migrations
 {
     [DbContext(typeof(BookTradeContext))]
-    partial class BookTradeContextModelSnapshot : ModelSnapshot
+    [Migration("20181013211547_AddedBookTradeLinkTable")]
+    partial class AddedBookTradeLinkTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

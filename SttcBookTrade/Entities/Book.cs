@@ -28,7 +28,8 @@ namespace SttcBookTrade.Entities
         [Required]
         public string Edition { get; set; }
 
-        //public bool IsOwned { get; set; }
+        [Required]
+        public bool IsWishlisted { get; set; }
 
         [Required]
         public string Author { get; set; }

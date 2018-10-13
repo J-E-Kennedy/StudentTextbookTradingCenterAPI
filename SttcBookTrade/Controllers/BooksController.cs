@@ -129,7 +129,8 @@ namespace SttcBookTrade.Controllers
                 ISBN13 = book.ISBN13,
                 Price = book.Price,
                 Condition = book.Condition,
-                Notes = book.Notes
+                Notes = book.Notes,
+                IsWishlisted = book.IsWishlisted
             };
 
 

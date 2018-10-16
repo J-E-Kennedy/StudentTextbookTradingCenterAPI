@@ -20,6 +20,7 @@ namespace SttcBookTrade.Services
         IEnumerable<Book> GetBooksOfUser(int userId, int bookId);
 
         void AddBookToUser(int userId, Book book);
+        void AddUser(User user);
 
         void DeleteBook(Book book);
 
@@ -29,6 +30,7 @@ namespace SttcBookTrade.Services
 
         IEnumerable<Trade> GetTrades();
         User GetUserFromCredentials(string username, string password);
+        bool IsUsernameTaken(string username);
 
         bool Save();
     }

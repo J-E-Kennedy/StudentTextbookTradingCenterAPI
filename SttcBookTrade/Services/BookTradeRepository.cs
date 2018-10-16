@@ -131,6 +131,11 @@ namespace SttcBookTrade.Services
             user.Books.Add(book);
         }
 
+        public void AddUser(User user)
+        {
+            _context.Users.Add(user);
+        }
+
         public void DeleteBook(Book book)
         {
             _context.Books.Remove(book);
@@ -174,6 +179,11 @@ namespace SttcBookTrade.Services
         {
             return _context.Users.Where(x => x.Username.ToLower() == username.ToLower()
                 && x.Password == password).FirstOrDefault();
+        }
+
+        public bool IsUsernameTaken(string username)
+        {
+            return _context.Users.Any(x => x.Username.ToLower() == username.ToLower());
         }
 
     }

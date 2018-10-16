@@ -66,6 +66,28 @@ namespace SttcBookTrade.Controllers
             return Ok(userWithoutBooksResult);
         }
 
+        /// <summary>
+        /// Get a username and user ID, from the user's username and password
+        /// </summary>
+        /// <param name="credentials">JSON object with username and password
+        /// username is not case sensitive, password is</param>
+        /// <returns>A JSON object containing the properly cased username and their 
+        /// ID in the database</returns>
+        [HttpPost("Login")]
+        public IActionResult GetIDFromCredentials([FromBody] CredentialsDto credentials)
+        {
+            var user = _bookTradeRepository.GetUserFromCredentials(credentials.username, credentials.password);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var userWithIDResult = Mapper.Map<UserWithIdDto>(user);
+                return Ok(userWithIDResult);
+            }
+
+        }
         
 
     }

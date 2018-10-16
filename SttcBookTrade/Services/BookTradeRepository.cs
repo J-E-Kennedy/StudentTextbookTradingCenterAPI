@@ -152,6 +152,30 @@ namespace SttcBookTrade.Services
             }
             return _context.Books.ToList();
         }
+
+        public IEnumerable<Trade> GetTrades()
+        {
+            foreach (var trade in _context.Trade)
+            {
+                if (trade.OffererUser == null)
+                {
+                    trade.OffererUser = GetUser(trade.OffererUserId, false);
+                }
+                if (trade.ReceiverUser == null)
+                {
+                    trade.ReceiverUser = GetUser(trade.ReceiverUserId, false);
+                }
+               
+            }
+            return _context.Trade.ToList();
+        }
+
+        public User GetUserFromCredentials(string username, string password)
+        {
+            return _context.Users.Where(x => x.Username.ToLower() == username.ToLower()
+                && x.Password == password).FirstOrDefault();
+        }
+
     }
 #pragma warning restore CS1591
 }

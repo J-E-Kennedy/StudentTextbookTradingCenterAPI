@@ -26,7 +26,9 @@ namespace SttcBookTrade.Services
         IEnumerable<Book> GetBooks();
 
         IEnumerable<Book> SearchBooks(string query, string order, string direction);
-        
+
+        IEnumerable<Trade> GetTrades();
+        User GetUserFromCredentials(string username, string password);
 
         bool Save();
     }

@@ -68,7 +68,8 @@ namespace SttcBookTrade
                 c.RoutePrefix = string.Empty;
             });
 
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod());
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod()
+            .AllowAnyHeader().AllowCredentials());
 
             if (env.IsDevelopment())
             {

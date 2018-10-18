@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SttcBookTrade.Entities;
 using SttcBookTrade.Models;
@@ -131,6 +132,7 @@ namespace SttcBookTrade.Controllers
         /// been used by another user in the database</param>
         /// <returns>Returns the user added to the database on success, a bad request for a missing or invalid
         /// json object, a bad request for a username that has already been taken</returns>
+        [EnableCors()]
         [HttpPost()]
         public IActionResult AddUser([FromBody] UserForCreationDto userInfo)
         {

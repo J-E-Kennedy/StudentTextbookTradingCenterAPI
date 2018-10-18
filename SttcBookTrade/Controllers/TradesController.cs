@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace SttcBookTrade.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/trades")]
     public class TradesController : Controller
     {

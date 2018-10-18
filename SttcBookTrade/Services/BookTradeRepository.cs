@@ -50,12 +50,20 @@ namespace SttcBookTrade.Services
         }
         public IEnumerable<Book> SearchBooks(string query, string order, string direction)
         {
-            string[] parts = query.ToLower().Split('+', StringSplitOptions.RemoveEmptyEntries);
+            List<string> parts = query.ToLower().Split('+', StringSplitOptions.RemoveEmptyEntries).ToList();
 
             Dictionary<Book, int> Relevance;
             
-            if(parts.Length > 0)
+            if(parts.Count > 0)
             {
+                var partsWithDashes = parts.Where(x => x.Contains('-'));
+                var noDashParts = partsWithDashes.Select(x => x.Replace("-", "")).ToList();
+
+                if(noDashParts.Count > 0)
+                {
+                    parts.AddRange(noDashParts);
+                }
+
                 Relevance = new Dictionary<Book, int>();
                 foreach (var part in parts)
                 {
@@ -186,6 +194,11 @@ namespace SttcBookTrade.Services
             return _context.Users.Any(x => x.Username.ToLower() == username.ToLower());
         }
 
+        public IEnumerable<Book> Sample(int amount)
+        {
+            return _context.Books.GroupBy(x => x.Name.Trim()).Select(x => x.FirstOrDefault())
+                .Where(x => x != null).Take(amount);
+        }
     }
 #pragma warning restore CS1591
 }

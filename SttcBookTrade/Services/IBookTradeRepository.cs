@@ -33,6 +33,9 @@ namespace SttcBookTrade.Services
         bool IsUsernameTaken(string username);
 
         bool Save();
+
+        IEnumerable<Book> Sample(int amount);
+
     }
 #pragma warning restore CS1591
 }

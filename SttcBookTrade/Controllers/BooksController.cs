@@ -192,11 +192,11 @@ namespace SttcBookTrade.Controllers
         }
 
 /// <summary>
-/// Deletes a book from the database
-/// </summary>
-/// <param name="userId">The id of the user whose book is to be deleted</param>
-/// <param name="bookId">The id of the book to be deleted</param>
-/// <returns>Returns no content on success, returns not found if the userId or bookId don't exist</returns>
+    /// Deletes a book from the database
+    /// </summary>
+    /// <param name="userId">The id of the user whose book is to be deleted</param>
+    /// <param name="bookId">The id of the book to be deleted</param>
+    /// <returns>Returns no content on success, returns not found if the userId or bookId don't exist</returns>
         [HttpDelete("{userId}/books/{bookId}")]
         public IActionResult DeleteBook(int userId, int bookId)
         {
@@ -221,5 +221,24 @@ namespace SttcBookTrade.Controllers
 
             return NoContent();
         }
+
+
+        /// <summary>
+        /// Returns a sample of books with simplified information
+        /// </summary>
+        /// <param name="amount">The size of the sample, if given a value larger than the
+        /// number of books available, returns the largest amount it can.</param>
+        /// <returns>A json collection of book objects</returns>
+        [HttpGet("books/sample")]
+        public IActionResult GetSampleBooks(int amount = 4)
+        {
+            var sample = _bookTradeRepository.Sample(amount);
+
+            var sampleResult = Mapper.Map<IEnumerable<BookSimplifiedDto>>(sample);
+
+            return Ok(sampleResult);
+        }
+
+
     }
 }
